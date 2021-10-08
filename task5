@@ -1,0 +1,21 @@
+import random
+minimal = 1
+maximal = int(input('Maximal number'))
+hidden_number = random.randint(minimal, maximal)
+attempts_number = int(input('Attempts_number'))
+for i in range(attempts_number):
+    guess = int(input('Try to guess the number'))
+    if guess == hidden_number:
+        win = True
+        break
+    elif guess < hidden_number:
+        print('Your number < than hidden number')
+        attempts_number -= 1
+        print(f'attempts_number: {attempts_number -1 - i}')
+    elif guess > hidden_number:
+        print('Your number > than hidden number')
+        print(f'attempts_number: {attempts_number - 1 - i}')
+if win:
+    print('You win')
+else:
+    print('You lose')
