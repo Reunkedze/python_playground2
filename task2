@@ -1,0 +1,3 @@
+celcies = int(input('enter degrees'))
+faringheits = celcies + 32
+print(faringheits)
