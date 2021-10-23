@@ -1,0 +1,16 @@
+cube = [[[1, 0, 0], [0, 1, 1], [1, 1, 0]], [[1, 0, 1], [0, 0, 0], [0, 0, 1]], [[0, 0, 1], [1, 1, 0], [1, 0, 1]]]
+transparent = True
+clearance_coordinates_list = []
+for ni, i in enumerate(cube):
+    for nj, j in enumerate(i):
+        for nk, k in enumerate(j):
+            if k == 0:
+                transparent = False
+                clearance_coordinates = [ni + 1, nj + 1, nk + 1]
+                clearance_coordinates_list.append(clearance_coordinates)
+
+if transparent:
+    print('Cube is transparent')
+else:
+    print('Cube isn\'t transparent')
+    print(f'List of clearance coordinates: {clearance_coordinates_list}')
