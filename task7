@@ -1,16 +1,29 @@
-cube = [[[1, 0, 0], [0, 1, 1], [1, 1, 0]], [[1, 0, 1], [0, 0, 0], [0, 0, 1]], [[0, 0, 1], [1, 1, 0], [1, 0, 1]]]
-transparent = True
-clearance_coordinates_list = []
-for ni, i in enumerate(cube):
-    for nj, j in enumerate(i):
-        for nk, k in enumerate(j):
-            if k == 0:
-                transparent = False
-                clearance_coordinates = [ni + 1, nj + 1, nk + 1]
-                clearance_coordinates_list.append(clearance_coordinates)
+cube = [[[1, 0, 0], [0, 0, 0], [1, 1, 0]], [[1, 0, 0], [0, 0, 0], [1, 1, 0]], [[1, 0, 0], [0, 0, 0], [1, 1, 0]]]
 
-if transparent:
-    print('Cube is transparent')
-else:
-    print('Cube isn\'t transparent')
-    print(f'List of clearance coordinates: {clearance_coordinates_list}')
+transparent_i_sectors = []
+for nk, k in enumerate(cube):
+    for nj, j in enumerate(k):
+        if list(set(j)) == [0]:
+            transparent_i_sectors.append([nj, nk])
+
+transparent_j_sectors = []
+for nk, k in enumerate(cube):
+    for ni in range(len(cube[0][0])):
+        if k[0][ni] == k[1][ni] == k[2][ni] == 0:
+            transparent_j_sectors.append([ni, nk])
+
+transparent_k_sectors = []
+for nj in range(len(cube[0])):
+    for ni in range(len(cube[0][0])):
+        if cube[0][nj][ni] == cube[1][nj][ni] == cube[2][nj][ni] == 0:
+            transparent_k_sectors.append([ni, nj])
+
+print('Transparent sectors coordinates:', end='\n\n')
+for element in transparent_k_sectors:
+    print(f'i = {element[0]}, j = {element[1]}')
+print('')
+for element in transparent_j_sectors:
+    print(f'i = {element[0]}, k = {element[1]}')
+print('')
+for element in transparent_i_sectors:
+    print(f'j = {element[0]}, k = {element[1]}')
